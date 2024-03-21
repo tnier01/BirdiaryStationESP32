@@ -7,7 +7,7 @@ Configuration file for Birdiary Station using SEEED XIAO ESP32S3 (Sense)
 #define Avi_File_Path "/video.avi"
 #define Wav_File_Path "/audio.wav" 
 
-// WiFi   
+// WiFi 
 #define WiFi_SSID "..."
 #define WiFi_Password "..."
 
@@ -16,7 +16,7 @@ Configuration file for Birdiary Station using SEEED XIAO ESP32S3 (Sense)
 #define Server_Port 443
 #define Server_Environment_Endpoint "/api/environment/"
 #define Server_Movement_Endpoint "/api/movement/"
-#define Server_Station_Id "999"
+#define Server_Station_Id "999" // A Birdiary Station instance can be created here: https://www.wiediversistmeingarten.org/view/createstation
 
 // DHT 
 #define DHT_Pin 9 
