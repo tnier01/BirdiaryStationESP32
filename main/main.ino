@@ -2,7 +2,7 @@
   Script for running Birdiary Station on ESP32 
 */
 #include <config.h>
-#include <WiFiClientSecure.h>  // library for http post nultipart/form-data (early loading needed)
+#include <WiFiClientSecure.h>  // library for http post multipart/form-data (early loading needed)
 
 // SD Card
 #include "FS.h"
@@ -22,7 +22,7 @@ void setupSD() {
     return;
   }
   uint8_t cardType = SD.cardType();
-  // Determine if the type of SD card is available
+  // determine if the type of SD card is available
   if (cardType == CARD_NONE) {
     Serial.println("No SD card attached!");
     return;
@@ -69,7 +69,7 @@ void connectToWifi() {
 }
 
 // HTTP post multipart/form-data
-const char host[] = Server_Host;  // your server address
+const char host[] = Server_Host; // your server address
 const uint16_t port = Server_Port;
 const String MOVEMENT_ENDPOINT = Server_Movement_Endpoint;
 const String STATION_ID = Server_Station_Id;
@@ -220,7 +220,7 @@ void sendMovement(String json) {
 constexpr unsigned int DHTPIN{ DHT_Pin };
 AM2302::AM2302_Sensor am2302{ DHTPIN };
 
-//TimeStamp
+// TimeStamp
 #include "time.h"
 #include "sntp.h"
 const char *ntpServer1 = "pool.ntp.org";
@@ -253,7 +253,7 @@ void timeavailable(struct timeval *t) {
 // HX711
 #include "HX711.h"
 HX711 scale;
-#include <RunningMedian.h>                        //calculate median of measured weight values
+#include <RunningMedian.h>                        // calculate median of measured weight values
 RunningMedian valuesWeight = RunningMedian(255);  // Storage Format for weight values whereby max is 255 values
 const int LOADCELL_DAT_PIN = HX711_Data_Pin;
 const int LOADCELL_CLK_PIN = HX711_CLK_Pin;
@@ -274,7 +274,7 @@ void setupBalance() {
   scale.tare();
 }
 
-//Function for taring the balance in case of producing not vaild values.
+// Function for taring the balance in case of producing not vaild values.
 void balanceTaring() {
   if (terminal_weight != 0 && calibration_weight != 0) {
     Serial.println("Starting balance taring");
@@ -298,7 +298,7 @@ void balanceTaring() {
 // Audio
 /*
 - documentation: https://docs.espressif.com/projects/arduino-esp32/en/latest/api/i2s.html
-- exammple: https://github.com/espressif/arduino-esp32/blob/c17a688b628ac80fc997c9cedf16bdd37085de20/libraries/ESP_I2S/examples/Record_to_WAV/Record_to_WAV.ino 
+- example: https://github.com/espressif/arduino-esp32/blob/c17a688b628ac80fc997c9cedf16bdd37085de20/libraries/ESP_I2S/examples/Record_to_WAV/Record_to_WAV.ino 
 */
 #include <ESP_I2S.h>
 I2SClass I2S;
@@ -381,7 +381,7 @@ Currently, a image (MJPEG) is recorded and stored as AVI.
 */
 void recordVideo() {
 
-  // Camera & SD available, start taking video
+  // Camera & SD available
   if (camera_sign && sd_sign) {
 
     videoFile = SD.open(aviFilePath, FILE_WRITE);
@@ -391,7 +391,7 @@ void recordVideo() {
     }
     Serial.println("(Recording Video)");
 
-    //Recording of test video needed to overwrite old buffer (otherwise old content will be recorded)
+    // Recording of test image needed to overwrite old buffer (otherwise old content will be recorded)
     camera_fb_t *test = esp_camera_fb_get();
     esp_camera_fb_return(test);
 
@@ -410,7 +410,7 @@ const String ENVIRONMENT_ENDPOINT = Server_Environment_Endpoint;
 
 // Function to send an environment
 void sendEnvironment(String environment) {
-  //Check WiFi connection status
+  // Check WiFi connection status
   if (WiFi.status() == WL_CONNECTED) {
     HTTPClient http;
 
@@ -495,7 +495,7 @@ void trackMovement() {
     Serial.println("Movement ongoing! (Currently measured weight: " + String(currentWeight) + " g)");
     valuesWeight.add(currentWeight);
 
-    delay(1000);  // pause of 1 sek. (There are only 255 measurements per movement possible, therefore we want to limit it.)
+    delay(1000);  // delay of 1 sek. (There are only 255 measurements per movement possible, therefore we want to limit it.)
 
   } else if (currentWeight < thresholdWeight && valuesWeight.getCount() >= 1 || valuesWeight.isFull() == true) {
     Serial.println("Movement ended!");
@@ -534,11 +534,11 @@ void setup() {
   Serial.begin(115200);
   Serial.println("Starting Birdiary");
 
-  //Setup HX711
+  // Setup HX711
   Serial.println("Setup HX711");
   setupBalance();
 
-  //Setup Wifi
+  // Setup Wifi
   Serial.println("Setup Wifi");
   connectToWifi();
 
@@ -561,7 +561,7 @@ void setup() {
   Serial.println("Setup SD");
   setupSD();
 
-  //Setup Tasks
+  // Setup Tasks
   Serial.println("Setup Tasks");
   runner.init();
   runner.addTask(taskEnvironment);

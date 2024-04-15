@@ -6,12 +6,12 @@ The Birdiary project demonstrates how a citizen science based biodiversity monit
 A smart bird feeder including an environmental sensor, a microphone, as well as a balance and a camera in a wooden case which identifies the type of visiting birds using AI and publishes the recognized species, including all further collected data on an open access website. 
 The station can be reproduced by anyone at an affordable price in a Do-It-Yourself format, making citizens a key contributor to biodiversity monitoring.
 
-This repository contains the code to run the Birdiary script on ESP32 (suggested version: [Seeed Studio XIAO ESP32S3 Sense](https://www.seeedstudio.com/XIAO-ESP32S3-Sense-p-5639.html)). All further Information to reproduce the code and the station can be found in the [GetStarted.md](/GetStarted.md) Manual. 
+This repository contains the code to run the Birdiary script on ESP32 (suggested microcontroller: [Seeed Studio XIAO ESP32S3 Sense](https://www.seeedstudio.com/XIAO-ESP32S3-Sense-p-5639.html)). All further Information to reproduce the code and the station can be found in the [GetStarted.md](/GetStarted.md) Manual. 
 All the collected data is send to the [Birdiary Webserver](https://www.wiediversistmeingarten.org/view).
 The repositories are currently still under development, the code for the operation of the feeder as well as for the web server are continuously updated. 
 
 Birdiary is a project which was launched by a group of students at the Institute for Geoinformatics at the University of Münster. 
-If you got any questions contact us via: [info@birdiary.de](mailto:info@birdiary.de).
+If you got any questions contact us via: [info@wiediversistmeingarten.org](mailto:info@wiediversistmeingarten.org).
 
 Any further information you can find via: [birdiary.de](https://www.wiediversistmeingarten.org/). 
 
@@ -39,7 +39,7 @@ If you encounter a bug, check if the bug has already been reported here as [issu
  
 When filing an issue, make sure to answer these four questions:
 > 1. Which hardware components (e.g. microcontroller, sensors) are you using?
-> 2. Which software components (e.g. IDE, libraries, packages) are you using=
+> 2. Which software components (e.g. IDE, libraries, packages) are you using?
 > 3. What did you do?
 > 4. What did you expect to see?
 > 5. What did you see instead?
@@ -48,7 +48,7 @@ When filing an issue, make sure to answer these four questions:
 If you wish a special feature, feel free to add it as new [issue](https://github.com/tnier01/BirdiaryStationESP32/issues/new). Here, please add the label "enhancement". We appreciate any suggestions.
  
 ### Code contributions
-Next to reporting bugs or suggesting features, we really appreciate code contributions. We suggest contributing through forking and pull-requests. A guideline how to fork a project and create a pull request can be found in the [Contribution to Projects Guidelines](https://docs.github.com/en/get-started/quickstart/contributing-to-projects). 
+Besides reporting bugs or suggesting features, we really appreciate code contributions. We suggest contributing through forking and pull-requests. A guideline how to fork a project and create a pull request can be found in the [Contribution to Projects Guidelines](https://docs.github.com/en/get-started/quickstart/contributing-to-projects). 
  
 We review pull requests on a regular basis and give feedback or merge them directly into our main repository.
  

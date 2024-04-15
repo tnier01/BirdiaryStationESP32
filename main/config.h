@@ -38,6 +38,9 @@ Set Terminal_Weight and Calibration_Weight to 0, during calibration.
 #define Threshold_Taring 1.00
 
 // Audio 
+/*
+- Audio_Recording_Duration >= 6 
+*/
 #define Audio_Recording_Duration 6 
 #define Audio_CLK_Pin 42
 #define Audio_Data_Pin 41

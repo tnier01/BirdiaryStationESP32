@@ -7,7 +7,7 @@ The following hardware components are recommended to operate the ESP32 as a bird
 
 ### Hardware required
 - [Seeed Studio XIAO ESP32S3 Sense](https://www.seeedstudio.com/XIAO-ESP32S3-Sense-p-5639.html)
-    -  A microcontroller that already includes a camera sensor (O2640), as well as a digital microphone, WiFi, 8MB PSRAM, 8MB Flash.
+    -  A microcontroller that already includes a camera sensor (OV2640), as well as a digital microphone, WiFi, 8MB PSRAM, 8MB Flash.
     -  The Birdiary ESP32 application is optimised for this microcontroller. The application generally also works with other ESP32 microcontrollers (additional sensors may then have to be provided, attention should be paid to ensuring that sufficient PSRAM is available and adjustments to the software may have to be made).
 - [DHT22](https://www.berrybase.de/dht22-digitaler-temperatur-und-luftfeuchtessensor-mit-breakout-board-jumperkabeln-f-f)
 - [M5Stack (HX711)](https://www.berrybase.de/m5stack-mini-wiegeeinheit-hx711-waegezellen-verstaerker) and [seeed Grove adapter cable](https://www.berrybase.de/seeed-grove-adapterkabel-4-pin-dupont-female-4-pin-grove-stecker-5er-pack)
@@ -16,29 +16,31 @@ The following hardware components are recommended to operate the ESP32 as a bird
 - [USB-C cable](https://www.berrybase.de/usb-c-3.1-generation-1-kabel-c-stecker-c-stecker-schwarz) for connection to your computer and power supply 
 - Dupont cabel 
     - The Seeed Studio XIAO ESP32S3 Sense contains only one GND slot. The GND cable from the DHT22 and the M5 stack must therefore be connected to this slot. We recommend using two Dupont cables for this and joining them at one end. 
-    - e.g. you could use these cables as basis: [Dupont cable 2 pin](https://www.berrybase.de/kabel-mit-dupont-steckverbinder-awg26-35cm-2-pin)
-- [microSD](https://www.berrybase.de/sandisk-extreme-micro-sdhc-a1-uhs-i-u3-speicherkarte-adapter-32gb)
-    - For the temporarly storage of the recorded content (video and audio) a SD card is required. 
+    - e.g. you could use this cable as starting point: [Dupont cable 2 pin](https://www.berrybase.de/kabel-mit-dupont-steckverbinder-awg26-35cm-2-pin)
+- [micro SD card](https://www.berrybase.de/sandisk-extreme-micro-sdhc-a1-uhs-i-u3-speicherkarte-adapter-32gb)
+    - For the temporarly storage of the recorded content (video and audio) a micro SD card is required. 
 - [2x Pin Strip](https://www.berrybase.de/stiftleiste-1x-7-polig-rm-2-54-gerade) and soldering equipment 
 
 ### Hardware preparations 
+![Pin Map XIAO ESP32S3 (Sense) Birdiary Station](/PinMap.png "Pin Map XIAO ESP32S3 (Sense) Birdiary Station")
+
 - Seeed Studio XIAO ESP32S3 Sense 
-    - If the Seeed Studio XIAO ESP32S3 Sense was ordered via the linked [shop](https://www.seeedstudio.com/XIAO-ESP32S3-Sense-p-5639.html), the microphone and camera component must still be plugged onto the chip board and the WiFi antenna must be attached. A detailed [manual](https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/#hardware-preparation) is available. 
+    - If the Seeed Studio XIAO ESP32S3 Sense was ordered via the linked [shop](https://www.seeedstudio.com/XIAO-ESP32S3-Sense-p-5639.html), the expansion board (including camera sensor, microphone, micro SD slot) must still be plugged onto the chip board and the WiFi antenna must be attached. A detailed [manual](https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/#hardware-preparation) is available. 
     - In order to be able to connect the cables from the sensors (balance, DHT22) to the ESP32, the corresponding pins must be reachable on the ESP32. To do this, the pin strips must be soldered to the underside of the board so that the connectors can be plugged into the board from below. 
 - Connecting balance and ESP32 
     - Connecting strain gauge and perch 
-            - The perch must then be attached to the strain gauge with a screw. The recommended installation method is described in the [Birdiary DIY instructions](https://docs.google.com/document/d/1ItowLull5JF3irzGtbR-fCmgelG3B7DSaU1prOeQXA4/edit#heading=h.r44s1od4mln0).
+        - The perch must be attached to the strain gauge with a screw. The recommended installation method is described in the [Birdiary DIY instructions](https://docs.google.com/document/d/1ItowLull5JF3irzGtbR-fCmgelG3B7DSaU1prOeQXA4/edit#heading=h.r44s1od4mln0).
     - Connecting M5Stack and strain gauge 
-        - The strain gaug cables can be clamped in the M5 stack. A PH0x60mm screwdriver is required. 
+        - The strain gauge cables can be clamped in the M5 stack. A PH0x60mm screwdriver is required. 
             - The green cable of the strain gauge has to be connected to A+ of the M5Stack. 
             - The white cable of the strain gauge has to be connected to A- of the M5Stack. 
             - The black cable of the strain gauge has to be connected to E- of the M5Stack. 
             - The red cable of the strain gauge has to be connected to E+ of the M5Stack. 
         - The wide part of the adapter cable is plugged into the M5 stack, the individual cables into the corresponding pins of the ESP32. 
     - Connecting ESP32 and M5Stack, as well as DHT22 
-        - The individual data cables need to be connected to the corresponding pins of the ESP32. The corresponding pins are defined in the [config.h](/main/config.h). You can simply use the default or define the pins your way. A [pinout map](https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/#hardware-overview) of the XIAO ESP32S3 Sense is available. 
+        - The individual data cables need to be connected to the corresponding pins of the ESP32. The corresponding pins are defined in the [config.h](/main/config.h). You can simply use the default or define the pins your way. Besides the [pin map](PinMap.png) in this repository, a additional [pin map](https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/#hardware-overview) of the XIAO ESP32S3 Sense is available. 
         - The ```5V``` pin of the M5Stack must be connected to the ```5V``` pin of the ESP32, the ```+``` pin of the DHT22 must be connected to the ```3V3``` pin of the ESP32. 
-        - As already described, there is only one ```GND``` pin on the XIAO ESP32S3 Sense, which must be shared between balance (```GND``` pin) and DHT22 (```-``` pin). We recommend using two Dupont cables for this and joining them at one end and plug this end into the GND pin of the XIAO ESP32S3 Sense.
+        - As already described, there is only one ```GND``` pin on the XIAO ESP32S3 Sense, which must be shared between balance (```GND``` pin) and DHT22 (```-``` pin). We recommend using two Dupont cables, joining them at one end and plug this end into the GND pin of the XIAO ESP32S3 Sense.
 - microSD  
     - To use the microSD you need to use the correct format. A [HowTo](https://wiki.seeedstudio.com/xiao_esp32s3_sense_filesystem/#prepare-the-microsd-card) is available. 
     - Connecting microSD card and ESP32 
@@ -68,6 +70,11 @@ The following software should be used and is required to operate the ESP32 as a 
     - You need to create a [Birdiary Station instance](https://www.wiediversistmeingarten.org/view/createstation) and insert the corresponding ID in the ```config.h``` as variable ```Server_Station_Id```. If you visit your station you can find the ID in the ```URL```: https://www.wiediversistmeingarten.org/view/station/*EXAMPLE-BIRDIARY-STATION-ID*.
     ```Server_Station_Id``` = ```EXAMPLE-BIRDIARY-STATION-ID```
 - Upload the program to the ESP32 and check in the Serial Monitor whether everything works. A [HowTo](https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/#run-your-first-blink-program) for uploading a program is available. 
+- Calibration of the balance 
+    - A calibration weight half the value range of the strain gauge should be used.  
+    - Load the strain gauge with the calibration weight and read the value displayed in the serial monitor. 
+    - In order to proceed, define the weight of the calibration weight as ```Calibration_Weight``` and the previously displayed value in the serial monitor as ```Terminal_Weight``` in grams in the [config.h](/main/config.h).
+    - The modified program should then be re-uploaded to the ESP32.  
 
 ## Concluding Remarks 
 - Unfortunately, there are currently only instructions for the hardware design of the birdhouse based on the Raspberry Pi ([Birdiary Manual](https://docs.google.com/document/d/1ItowLull5JF3irzGtbR-fCmgelG3B7DSaU1prOeQXA4/)). Nevertheless, you can use these instructions as a starting point if you also want to build a birdhouse adapted for ESP32. It is likely that adjustments will be necessary to attach the sensors. 
@@ -76,7 +83,7 @@ The following software should be used and is required to operate the ESP32 as a 
     - The video is an image recorded at the beginning of the movement.
     - The audio is recorded at the beginning of the movement and is limited to a duration which can be set in the ```config.h```. 
 - If you would like to support us in minimising these limitations, we would be delighted to receive your [contribution](https://github.com/tnier01/BirdiaryStationESP32/tree/main?tab=readme-ov-file#suggest-feature). 
-- If you encounter any issues or have questions, please contact the Birdiary Team via [info@wiediversistmeingarte.org](mailto:info@wiediversistmeingarte.org). 
+- If you encounter any issues or have questions, please contact the Birdiary Team via [info@wiediversistmeingarten.org](mailto:info@wiediversistmeingarten.org). 
 
 ## Further Documentation 
 Furthermore, the following documentation is recommended: 
@@ -85,4 +92,4 @@ Furthermore, the following documentation is recommended:
 - Forum 
     - [Arduino Forum](https://forum.arduino.cc/)
     - [Seeed Studio Forum](https://forum.seeedstudio.com/)
-    - [ESPRESSIF ESP32 Forum](https://www.esp32.com/viewforum.php?f=23&sid=fc65899aa9ece52297292b1b76368f9b)
+    - [ESPRESSIF ESP32 Forum](https://www.esp32.com/viewforum.php?f=19&sid=1b42a5d2c46c207feea2ee31573ec992)
